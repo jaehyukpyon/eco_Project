@@ -1,30 +1,36 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <status-bar></status-bar>
+  <shinhan-navigation-bar :currentPath="currentPath"></shinhan-navigation-bar>
+  <router-view @sendCurrentPath="receiveCurrentPath"></router-view>
+  <shinhan-footer-navigation></shinhan-footer-navigation>
 </template>
 
+<script>
+import StatusBar from "./components/StatusBar.vue";
+import ShinhanNavigationBar from "./components/ShinhanNavigationBar.vue";
+import ShinhanFooterNavigation from "./components/ShinhanFooterNavigation.vue";
+
+export default {
+  data() {
+    return {
+      currentPath: "",
+    };
+  },
+  components: {
+    ShinhanNavigationBar,
+    StatusBar,
+    ShinhanFooterNavigation,
+  },
+  methods: {
+    receiveCurrentPath(currentPath) {
+      console.log('currentPath > ' + currentPath);
+      this.currentPath = currentPath;
+    }
+  },
+  mounted() {
+  },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
