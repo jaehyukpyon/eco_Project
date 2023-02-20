@@ -2,7 +2,7 @@ from rest_framework import generics
 from .models import Mission, CompletedMission
 from .serializers import MissionSerializer, CompletedMissionSerializer
 
-# GET/받아올 Mission 리스트
+# GET, POST/받아오거나 생성할 Mission 리스트
 class MissionList(generics.ListCreateAPIView):
     queryset = Mission.objects.all()
     serializer_class = MissionSerializer

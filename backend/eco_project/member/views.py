@@ -28,10 +28,10 @@ def register(request):
     password = request.data.get('password')
     account = random.randint(10,1000000)
     if not username or not password:
-        return Response({'error': 'Please provide both email and password.'})
+        return Response({'error': 'Please provide both username and password.'})
     if Member.objects.filter(username=username).exists():
-        return Response({'error': 'User with this email already exists.'})
-    user = Member.objects.create_user(username=username, password=password)
+        return Response({'error': 'User with this username already exists.'})
+    user = Member.objects.create_user(username=username, password=password, account=account)
     return Response({'message': 'User created successfully.'})
 
 
@@ -41,7 +41,7 @@ def login(request):
     password = request.data.get('password')
     user = authenticate(request, username=username, password=password)
     if not user:
-        return Response({'error': 'Invalid email or password.'})
+        return Response({'error': 'Invalid username or password.'})
     refresh = RefreshToken.for_user(user)
     return Response({
         'access': str(refresh.access_token),
