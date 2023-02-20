@@ -22,7 +22,6 @@
 <script>
 
 export default ({
-  emits: ["eco_mission"],
   data() {
     return {
       type: "eco_mission",

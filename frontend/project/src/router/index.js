@@ -7,6 +7,9 @@ import MileageHistory from '../views/MileageHistory.vue'
 import MileageGiftCard from '../views/MileageGiftCard.vue'
 import MissionPhotoUpload from '../views/MissionPhotoUpload.vue'
 import EcoMission from '../views/EcoMission.vue'
+import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
+
 
 const routes = [
   {
@@ -28,9 +31,9 @@ const routes = [
     component: HomeMileage,
   },
   {
-  path: '/ecomall-list',
-  name: 'ecomall-list',
-  component: Ecomall_list,
+    path: '/ecomall-list',
+    name: 'ecomall-list',
+    component: Ecomall_list,
   },
   {
     path: '/mileage/barcode',
@@ -56,8 +59,19 @@ const routes = [
     path: '/eco_mission',
     name: 'eco_mission',
     component: EcoMission,
-    },
-  ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
+  },
+
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
