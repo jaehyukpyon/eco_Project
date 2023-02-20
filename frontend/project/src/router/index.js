@@ -5,6 +5,8 @@ import MileageBarcode from '../views/MileageBarcode.vue'
 import MileageHistory from '../views/MileageHistory.vue'
 import MileageGiftCard from '../views/MileageGiftCard.vue'
 import MissionPhotoUpload from '../views/MissionPhotoUpload.vue'
+import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 
 const routes = [
   {
@@ -44,6 +46,16 @@ const routes = [
     path: '/mission/photoupload',
     name: 'mission-photoupload',
     component: MissionPhotoUpload,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login,
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
   }
 ]
 
