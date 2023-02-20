@@ -95,5 +95,6 @@ table thead tr th {
 }
 table tbody tr td {
   font-size: 18px;
+  height: 30px;
 }
 </style>
