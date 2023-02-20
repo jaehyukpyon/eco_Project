@@ -8,7 +8,7 @@ import MileageGiftCard from '../views/MileageGiftCard.vue'
 import MissionPhotoUpload from '../views/MissionPhotoUpload.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import Walk from '../views/Walk.vue'
+
 
 const routes = [
   {
@@ -64,11 +64,7 @@ const routes = [
     name: 'register',
     component: Register,
   },
-  {
-    path: '/walk',
-    name: 'walk',
-    component: Walk,
-  }
+
 ]
 
 const router = createRouter({
