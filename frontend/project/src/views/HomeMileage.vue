@@ -50,9 +50,10 @@
 
 <script>
 export default {
-  emits: ["sendCurrentPath"],
+  emits: ["sendCurrentPath", 'barType',],
   beforeCreate() {
     this.$emit("sendCurrentPath", this.$route.path);
+    this.$emit('barType', 'shinhan');
   },
 };
 </script>
