@@ -1,0 +1,144 @@
+<template>
+  <div>
+    <div class="box">
+      <div class="percent">
+        <svg>
+          <circle cx="70" cy="70" r="70"></circle>
+          <circle cx="70" cy="70" r="70" ref="bar"></circle>
+        </svg>
+        <div class="number">
+          <h2>{{ percent }}<span>%</span></h2>
+        </div>
+      </div>
+      <h2 class="text" style="text-align: center">
+        <span style="color: green">환경</span>을 위해<br /><span
+          style="font-size: 40px; color: green"
+          >{{ walk }} / 10000</span
+        ><br />걸음 걸으셨습니다!
+      </h2>
+    </div>
+
+    <div class="buttons">
+      <button class="oneWalk" @click="oneWalk">한 걸음 걷기</button>
+      <button class="fullWalk" @click="fullWalk">
+        10,000걸음 한 번에 걷기
+      </button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      percent: 0,
+      walk: 0,
+    };
+  },
+  mounted() {
+    this.$refs.bar.style.strokeDashoffset =
+      "calc(440 - (440 * (" + this.walk + "/10000) * 100) / 100)";
+  },
+  methods: {
+    oneWalk() {
+      if (this.walk >= 10000 || this.percent >= 100) return;
+      this.walk += 1;
+      const percent = ((this.walk / 10000) * 100).toFixed(2);
+      this.percent = percent >= 100 ? 100 : percent;
+      this.$refs.bar.style.strokeDashoffset =
+        "calc(440 - (440 * (" + this.walk + "/10000) * 100) / 100)";
+    },
+    fullWalk() {
+      if (this.walk >= 10000 || this.percent >= 100) return;
+      this.walk = 10000;
+      this.percent = 100;
+      this.$refs.bar.style.strokeDashoffset =
+        "calc(440 - (440 * (" + this.walk + "/10000) * 100) / 100)";
+    },
+  },
+};
+</script>
+
+<style scoped>
+.buttons {
+  margin-top: 90px;
+}
+button {
+  width: 100%;
+  height: 70px;
+  font-size: 1.2rem;
+  background-color: #25bf8b;
+  color: white;
+  border: 0.5px solid white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+.box {
+  margin-top: 150px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2); */
+}
+.box .percent {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+.box .percent svg {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.box .percent svg circle {
+  width: 250px;
+  height: 250px;
+  fill: none;
+  stroke-width: 10;
+  stroke: #000;
+  transform: translate(5px, 5px);
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+}
+.box .percent svg circle:nth-child(1) {
+  stroke-dashoffset: 0;
+  stroke: #f3f3f3;
+}
+
+.box .percent svg circle:nth-child(2) {
+  stroke-dashoffset: calc(440 - (440 * (5000 / 10000) * 100) / 100);
+  stroke: #51bd73;
+}
+.box .percent .number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+}
+
+.box .percent .number h2 {
+  font-size: 48px;
+}
+
+.box .percent .number h2 span {
+  font-size: 24px;
+}
+
+.box .text {
+  padding: 10px 0 0;
+  color: #999;
+  font-weight: 700;
+}
+</style>
