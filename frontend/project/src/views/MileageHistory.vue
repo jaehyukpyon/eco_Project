@@ -75,7 +75,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .name {
   top: 25px;
   left: 28px;
