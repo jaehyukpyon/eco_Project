@@ -6,6 +6,7 @@ import MileageBarcode from '../views/MileageBarcode.vue'
 import MileageHistory from '../views/MileageHistory.vue'
 import MileageGiftCard from '../views/MileageGiftCard.vue'
 import MissionPhotoUpload from '../views/MissionPhotoUpload.vue'
+import EcoMission from '../views/EcoMission.vue'
 
 const routes = [
   {
@@ -50,8 +51,13 @@ const routes = [
     path: '/mission/photoupload',
     name: 'mission-photoupload',
     component: MissionPhotoUpload,
-  }
-]
+  },
+  {
+    path: '/eco_mission',
+    name: 'eco_mission',
+    component: EcoMission,
+    },
+  ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
