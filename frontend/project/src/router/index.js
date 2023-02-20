@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import HomeMileage from '../views/HomeMileage.vue'
+import Ecomall_list from '../views/Ecomall_list.vue'
 
 const routes = [
   {
@@ -20,7 +21,12 @@ const routes = [
     path: '/mileage',
     name: 'mileage',
     component: HomeMileage,
-  }
+  },
+  {
+  path: '/ecomall-list',
+  name: 'ecomall-list',
+  component: Ecomall_list,
+  },
 ]
 
 const router = createRouter({
