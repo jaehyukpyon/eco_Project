@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import HomeMileage from '../views/HomeMileage.vue'
+import MileageBarcode from '../views/MileageBarcode.vue'
+import MileageHistory from '../views/MileageHistory.vue'
 
 const routes = [
   {
@@ -20,7 +22,17 @@ const routes = [
     path: '/mileage',
     name: 'mileage',
     component: HomeMileage,
-  }
+  },
+  {
+    path: '/mileage/barcode',
+    name: 'mileage-barcode',
+    component: MileageBarcode,
+  },
+  {
+    path: '/mileage/history',
+    name: 'mileage-history',
+    component: MileageHistory,
+  },
 ]
 
 const router = createRouter({

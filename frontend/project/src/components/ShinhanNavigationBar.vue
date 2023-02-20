@@ -7,7 +7,7 @@
         >
       </li>
       <li class="shinhan-header-link">
-        <a href="#" :class="currentPath === '/mileage' ? 'active' : 'inactive'"
+        <a href="#" :class="currentPath.includes('/mileage') ? 'active' : 'inactive'"
           >친환경<br />마일리지</a
         >
       </li>
