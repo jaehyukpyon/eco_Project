@@ -2,27 +2,27 @@
   <nav>
     <ol class="shinhan-header" ref="header">
       <li class="shinhan-header-link">
-        <a href="#" :class="currentPath === '/news' ? 'active' : 'inactive'"
+        <a href="#"
           >뉴스<br />커뮤니티</a
         >
       </li>
       <li class="shinhan-header-link">
-        <a href="#" :class="currentPath.includes('/mileage') ? 'active' : 'inactive'"
+        <a href="#" 
           >친환경<br />마일리지</a
         >
       </li>
       <li class="shinhan-header-link">
-        <a href="#" :class="currentPath === '/account' ? 'active' : 'inactive'"
+        <a href="#"
           >친환경<br />계좌</a
         >
       </li>
       <li class="shinhan-header-link">
-        <a href="#" :class="currentPath === '/mission' ? 'active' : 'inactive'"
+        <a href="#" 
           >친환경<br />미션</a
         >
       </li>
       <li class="shinhan-header-link">
-        <a href="#" :class="currentPath === '/stock' ? 'active' : 'inactive'"
+        <a href="#" 
           >친환경<br />주식</a
         >
       </li>
@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  props: ["currentPath"],
+
 };
 </script>
 

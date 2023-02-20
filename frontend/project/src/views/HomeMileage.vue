@@ -1,4 +1,5 @@
 <template>
+  <shinhan-navigation-bar></shinhan-navigation-bar>
   <section class="home-mileage">
     <div style="text-align: center">
       <p style="font-size: 2rem; color: white">친환경 마일리지</p>
@@ -49,12 +50,19 @@
 </template>
 
 <script>
+import ShinhanNavigationBar from '../components/ShinhanNavigationBar.vue'
 export default {
-  emits: ["sendCurrentPath", 'barType',],
-  beforeCreate() {
-    this.$emit("sendCurrentPath", this.$route.path);
-    this.$emit('barType', 'shinhan');
+  // emits: ["sendCurrentPath", 'barType',],
+  // beforeCreate() {
+  //   this.$emit("sendCurrentPath", this.$route.path);
+  //   this.$emit('barType', 'shinhan');
+  // },
+  components: {
+    ShinhanNavigationBar,
   },
+  data() {
+
+  }
 };
 </script>
 
