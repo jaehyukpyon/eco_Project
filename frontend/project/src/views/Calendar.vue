@@ -1,9 +1,5 @@
 <template>
-  <nav>
-    <div>
-      <img src="../assets/buttons/left_error.svg" alt="" />
-    </div>
-  </nav>
+  <green-bar></green-bar>
     <div>
     <div>
         <p>
@@ -19,7 +15,7 @@
           width="100"
           height="90"
           alt=""/>
-        <div style="margin-top: 30px; text-align: center; position: relative;">
+        <div style="margin-top: 20px; text-align: center; position: relative;">
         <div v-if="type === 'calendar'"></div>
         <img
           src="../assets/calendar/calendar.png"
@@ -32,14 +28,10 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return{          
-        };
-    },
-    methods: {},
-    created() {},
-};
+ import GreenBar from "../components/GreenBar.vue";
+    export default {
+        components: { GreenBar }
+    };
 </script>
 <style scoped>
 
@@ -54,20 +46,6 @@ export default {
   font-weight: light;
   font-size: 15px;
   position: center;
-}
-nav {
-  line-height: 75px;
-}
-nav > div {
-  width: 480px;
-  height: 75px;
-  background-color: #25bf8b;
-}
-
-img {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 20px;
 }
 
 </style>
