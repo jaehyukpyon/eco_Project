@@ -9,4 +9,4 @@ class MissionSerializer(serializers.ModelSerializer):
 class CompletedMissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompletedMission
-        fields = ['user', 'mission', 'date_completed']
+        fields = '__all__'
