@@ -35,6 +35,17 @@ export default {
           console.log(response.data);
           this.$cookies.set('accessToken', response.data.access);
           console.log(this.$cookies.isKey('accessToken'));
+
+          axios.get('http://127.0.0.1:8000/member/')
+              .then(response => {
+                console.log(response);
+                response.data.forEach(member => {
+                  if (member.username == username) {
+                    this.$cookies.set('userPk', member.id);
+                  }
+                });
+                this.$router.push('/mileage');
+              });
         } else {
           alert('로그인 실패. 유저네임 혹은 비밀번호를 확인하세요.');
         }

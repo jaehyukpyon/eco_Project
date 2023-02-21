@@ -14,6 +14,7 @@ import Re100 from '../views/Re100.vue'
 import OrderStock from '../views/OrderStock.vue'
 import AccountCreateView from '../views/AccountCreateView'
 import AccountConfirmView from '../views/AccountConfirmView'
+import Walk from '../views/Walk.vue'
 
 
 const routes = [
@@ -99,6 +100,11 @@ const routes = [
     path: '/account/confirm',
     name: 'account-confirm',
     component: AccountConfirmView,
+  },
+  {
+    path: '/walk',
+    name: 'walk',
+    component: Walk,
   },
 ]
 

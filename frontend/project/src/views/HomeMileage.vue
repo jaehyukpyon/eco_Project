@@ -2,23 +2,23 @@
   <shinhan-navigation-bar></shinhan-navigation-bar>
   <section class="home-mileage">
     <div style="text-align: center">
-      <p style="font-size: 2rem; color: white">친환경 마일리지</p>
+      <p style="font-size: 3rem; color: white">친환경 마일리지</p>
     </div>
 
     <div style="text-align: center; margin: 30px 0px">
-      <span>0</span>&nbsp;포인트
+      <span class="mileage">{{ usermileage }}</span>&nbsp;마일리지
     </div>
 
     <div style="margin-bottom: 20px">
       <table class="mileage-menu">
         <tbody>
           <tr>
-            <td><a>마일리지 내역</a></td>
+            <td><router-link to="/mileage/history">마일리지 내역</router-link></td>
             <td><a href="" @click.prevent="openModal">마일리지 사용</a></td>
           </tr>
           <tr>
-            <td><a href="">친환경 걷기</a></td>
-            <td><a href="">미션</a></td>
+            <td><router-link to="/walk">친환경 걷기</router-link></td>
+            <td><router-link to="/eco_mission">미션</router-link></td>
           </tr>
         </tbody>
       </table>
@@ -33,7 +33,7 @@
     <div class="temperature">
       <div>
         <p style="display: inline-block; color: white">
-          <span>이관현</span>님의 친환경 온도&nbsp;&nbsp;
+          <span class="username">{{ username }}</span>님의 친환경 온도&nbsp;&nbsp;
         </p>
         <p style="display: inline-block; color: white">
           <span>35&#8451;</span>
@@ -57,18 +57,17 @@
 
 <script>
 import ShinhanNavigationBar from '../components/ShinhanNavigationBar.vue'
+import axios from 'axios'
+
 export default {
-  // emits: ["sendCurrentPath", 'barType',],
-  // beforeCreate() {
-  //   this.$emit("sendCurrentPath", this.$route.path);
-  //   this.$emit('barType', 'shinhan');
-  // },
   components: {
     ShinhanNavigationBar,
   },
   data() {
     return {
       showModal: false,
+      username: '',
+      usermileage: 0,
     };
   },
   methods: {
@@ -83,8 +82,21 @@ export default {
     },
     moveToBarCode() {
       this.$router.push('/mileage/barcode');
-    }
-  }
+    },
+  },
+  created() {
+    console.log('HomeMileage created...');
+    const userPk = this.$cookies.get('userPk');
+    console.log('userPk: ' + userPk);
+    const that = this;
+    axios.get('http://127.0.0.1:8000/member/' + userPk + '/')
+      .then(response => {
+        console.log('HomeMileage response? ');
+        console.log(response);
+        that.usermileage = response.data.mileage;
+        that.username = response.data.username;
+      });
+  },
 };
 </script>
 
@@ -109,7 +121,7 @@ section {
   text-align: center;
 }
 .home-mileage {
-  background-color: #5bdeb2;
+  background-color: #00A54F;
 }
 
 .mileage-menu {
@@ -120,8 +132,8 @@ section {
 
 .mileage-menu td {
   padding: 1rem;
-  border: 1px solid black;
   text-align: center;
+  font-size: 30px;
 }
 
 .home-mileage > div:first-child {
@@ -148,6 +160,14 @@ section {
 .sub-menus img {
   width: 100%;
   height: 100%;
+}
+
+.username {
+  font-size: 1.5rem;
+}
+
+.mileage {
+  font-size: 3rem;
 }
 /* https://blog.hubspot.com/website/center-div-css */
 </style>

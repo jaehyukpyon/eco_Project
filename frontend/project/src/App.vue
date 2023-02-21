@@ -1,6 +1,6 @@
 <template>
   <status-bar></status-bar>  
-  <router-view @sendCurrentPath="receiveCurrentPath" @barType="getBarType"></router-view>
+  <router-view></router-view>
   <shinhan-footer-navigation></shinhan-footer-navigation>
 </template>
 

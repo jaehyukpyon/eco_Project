@@ -38,7 +38,7 @@
                 console.log(response);
                 response.data.forEach(member => {
                   if (member.username == username) {
-                    this.$cookies.set('userId', member.id);
+                    this.$cookies.set('userPk', member.id);
                   }
                 });
                 console.log('test1'); // 나중에
