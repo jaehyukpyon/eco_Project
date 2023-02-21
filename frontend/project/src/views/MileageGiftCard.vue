@@ -9,8 +9,9 @@
       <img src="../assets/mileage/giftcard30000.png" alt="" />
       <span class="sam-man">300,000</span>
     </div>
-    <div style="text-align: center">
+    <div class="top-wrap" style="text-align: center">
       <img src="../assets/mileage/notice2.png" alt="" />
+      <img src="../assets/mileage/notice3.png" alt="">
     </div>
   </div>
 </template>
@@ -25,6 +26,10 @@ export default {
 </script>
 
 <style scoped>
+div.top-wrap {
+  height: 180px;
+  overflow: auto;
+}
 span {
   position: absolute;
   display: inline-block;

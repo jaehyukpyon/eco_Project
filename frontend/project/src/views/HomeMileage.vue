@@ -1,63 +1,93 @@
 <template>
-  <shinhan-navigation-bar></shinhan-navigation-bar>
-  <section class="home-mileage">
-    <div style="text-align: center">
-      <p style="font-size: 3rem; color: white">친환경 마일리지</p>
-    </div>
-
-    <div style="text-align: center; margin: 30px 0px">
-      <span class="mileage">{{ usermileage }}</span>&nbsp;마일리지
-    </div>
-
-    <div style="margin-bottom: 20px">
-      <table class="mileage-menu">
-        <tbody>
-          <tr>
-            <td><router-link to="/mileage/history">마일리지 내역</router-link></td>
-            <td><a href="" @click.prevent="openModal">마일리지 사용</a></td>
-          </tr>
-          <tr>
-            <td><router-link to="/walk">친환경 걷기</router-link></td>
-            <td><router-link to="/eco_mission">미션</router-link></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div v-if="showModal" style="width: 400px; height: 480px; background-color: white; position: absolute; top: 60px; left: 45px;">
-      <img class="modal" src="../assets/modal/top.png" width="400" height="80" @click="closeModal">
-      <img class="modal" src="../assets/modal/middle.png" width="400" height="200" @click="moveToGiftCard">
-      <img class="modal" src="../assets/modal/bottom.png" width="400" height="200" @click="moveToBarCode">
-    </div>
-
-    <div class="temperature">
-      <div>
-        <p style="display: inline-block; color: white">
-          <span class="username">{{ username }}</span>님의 친환경 온도&nbsp;&nbsp;
-        </p>
-        <p style="display: inline-block; color: white">
-          <span>35&#8451;</span>
-        </p>
+  <div>
+    <shinhan-navigation-bar></shinhan-navigation-bar>
+    <section class="home-mileage">
+      <div style="text-align: center">
+        <p style="font-size: 3rem; color: white">친환경 마일리지</p>
       </div>
-    </div>
 
-    <div class="sub-menus" style="margin-top: 30px">
-      <div class="item">
-        <img :src="require('../assets/cards/card1.png')" alt="" />
+      <div style="text-align: center; margin: 30px 0px">
+        <span class="mileage">{{ usermileage }}</span
+        >&nbsp;마일리지
       </div>
-      <div class="item">
-        <img :src="require('../assets/cards/card2.png')" alt="" />
+
+      <div style="margin-bottom: 20px">
+        <table class="mileage-menu">
+          <tbody>
+            <tr>
+              <td>
+                <router-link to="/mileage/history">마일리지 내역</router-link>
+              </td>
+              <td><a href="" @click.prevent="openModal">마일리지 사용</a></td>
+            </tr>
+            <tr>
+              <td><router-link to="/walk">친환경 걷기</router-link></td>
+              <td><router-link to="/eco_mission">미션</router-link></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="item">
-        <img :src="require('../assets/cards/card3.png')" alt="" />
+
+      <div
+        v-if="showModal"
+        style="
+          width: 384px;
+          height: 425px;
+          background-color: white;
+          position: absolute;
+          top: 60px;
+          left: 45px;
+        "
+      >
+        <img
+          class="modal"
+          src="../assets/modal/top1.png"         
+          @click="closeModal"
+        />
+        <img
+          class="modal"
+          src="../assets/modal/middle1.png"
+          
+          @click="moveToGiftCard"
+        />
+        <img
+          class="modal"
+          src="../assets/modal/bottom1.png"
+          
+          @click="moveToBarCode"
+        />
       </div>
-    </div>
-  </section>
+
+      <div class="temperature">
+        <div>
+          <p style="display: inline-block; color: white">
+            <span class="username">{{ username }}</span
+            >님의 친환경 온도&nbsp;&nbsp;
+          </p>
+          <p style="display: inline-block; color: white">
+            <span>35&#8451;</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="sub-menus" style="margin-top: 16px">
+        <div class="item">
+          <img :src="require('../assets/cards/card_1.png')" alt="" />
+        </div>
+        <div class="item">
+          <img :src="require('../assets/cards/card_2.png')" alt="" />
+        </div>
+        <div class="item">
+          <img :src="require('../assets/cards/card_3.png')" alt="" />
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-import ShinhanNavigationBar from '../components/ShinhanNavigationBar.vue'
-import axios from 'axios'
+import ShinhanNavigationBar from "../components/ShinhanNavigationBar.vue";
+import axios from "axios";
 
 export default {
   components: {
@@ -66,7 +96,7 @@ export default {
   data() {
     return {
       showModal: false,
-      username: '',
+      username: "",
       usermileage: 0,
     };
   },
@@ -78,20 +108,21 @@ export default {
       this.showModal = false;
     },
     moveToGiftCard() {
-      this.$router.push('/mileage/giftcard');
+      this.$router.push("/mileage/giftcard");
     },
     moveToBarCode() {
-      this.$router.push('/mileage/barcode');
+      this.$router.push("/mileage/barcode");
     },
   },
   created() {
-    console.log('HomeMileage created...');
-    const userPk = this.$cookies.get('userPk');
-    console.log('userPk: ' + userPk);
+    console.log("HomeMileage created...");
+    const userPk = this.$cookies.get("userPk");
+    console.log("HomeMileage userPk: " + userPk);
     const that = this;
-    axios.get('http://127.0.0.1:8000/member/' + userPk + '/')
-      .then(response => {
-        console.log('HomeMileage response? ');
+    axios
+      .get("http://127.0.0.1:8000/member/" + userPk + "/")
+      .then((response) => {
+        console.log("HomeMileage response? ");
         console.log(response);
         that.usermileage = response.data.mileage;
         that.username = response.data.username;
@@ -106,7 +137,7 @@ img.modal:hover {
 }
 
 section {
-  position: relative; 
+  position: relative;
 }
 .temperature {
   width: 412px;
@@ -121,7 +152,7 @@ section {
   text-align: center;
 }
 .home-mileage {
-  background-color: #00A54F;
+  background-color: #00a54f;
 }
 
 .mileage-menu {
@@ -153,13 +184,13 @@ section {
   height: 180px;
   line-height: 180px;
   text-align: center;
-  background-color: green;
   margin-right: 20px;
 }
 
 .sub-menus img {
   width: 100%;
   height: 100%;
+  border-radius: 10%;
 }
 
 .username {

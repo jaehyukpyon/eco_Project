@@ -52,8 +52,8 @@ export default {
           Authorization: 'JWT ' + accessToken,
         }
       }).then(response => {
+        console.log("MileageHistory에서 response.data(한 유저의 마일리지 전체 히스토리 조회)");
         console.log(response);
-        console.log("History response.data");
         const reversed = response.data.reverse();
         that.historyList = reversed;
       });
@@ -62,11 +62,11 @@ export default {
   created() {
     console.log('MileageHistory created...');
     const userPk = this.$cookies.get('userPk');
-    console.log('userPk: ' + userPk);
+    console.log('MileageHistory userPk check: ' + userPk);
     const that = this;
     axios.get('http://127.0.0.1:8000/member/' + userPk + '/')
       .then(response => {
-        console.log('MileageHistory response? ');
+        console.log('MileageHistory 에서 username과 total마일리지를 조회');
         console.log(response);
         that.usermileage = response.data.mileage;
         that.username = response.data.username;
