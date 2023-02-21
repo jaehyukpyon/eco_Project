@@ -43,9 +43,12 @@ export default {
 </script>
 
 <style scoped>
+* {
+  font-size: 1.2rem!important;
+}
 .active {
   font-weight: bold!important;
-  font-size: 1rem!important;
+  font-size: 1.2rem!important;
 }
 
 .inactive {

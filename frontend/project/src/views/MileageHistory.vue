@@ -1,12 +1,13 @@
 <template>
   <div>
+    <green-bar></green-bar>
     <div style="margin-top: 30px; margin-left: 35px; position: relative">
-      <span class="name">이관현</span>
+      <span class="name">{{ username }}</span>
       <img src="../assets/mileage/currentmileage.png" alt="" />
-      <span class="total">3000</span>
+      <span class="total">{{ usermileage }}</span>
     </div>
 
-    <div style="margin-top: 25px">
+    <div style="margin-top: 25px; height: 385px; overflow: auto; background: #FEF8F5; border-radius: 20px">
       <table style="text-align: center; margin: 0 auto; width: 100%">
         <thead>
           <tr>
@@ -15,52 +16,12 @@
             <th>날짜</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
-          <tr>
-            <td>일일미션</td>
-            <td>100</td>
-            <td>2023-02-20 11:54</td>
-          </tr>
+        <tbody>          
+          <tr v-for="history in historyList" :key="history.id">
+            <td>{{ history.activity }}</td>
+            <td>{{ history.mileage > 0 ? '+' + history.mileage : history.mileage }}</td>
+            <td>{{ history.date.substr(0, 10) }}</td>
+          </tr>          
         </tbody>
       </table>
     </div>
@@ -68,33 +29,76 @@
 </template>
 
 <script>
+import axios from 'axios'
+import GreenBar from '@/components/GreenBar.vue';
+
 export default {
-  beforeCreate() {
-    this.$emit("barType", "green");
+  components: {
+    GreenBar,
+  },  
+  data() {
+    return {
+      username: '',
+      usermileage: '',
+      historyList: null,
+    };
+  },
+  methods: {
+    getHistory() {
+      const accessToken = this.$cookies.get('accessToken');
+      const that = this;
+      axios.get('http://127.0.0.1:8000/mileage/', {
+        headers: {
+          Authorization: 'JWT ' + accessToken,
+        }
+      }).then(response => {
+        console.log(response);
+        console.log("History response.data");
+        const reversed = response.data.reverse();
+        that.historyList = reversed;
+      });
+    },
+  },
+  created() {
+    console.log('MileageHistory created...');
+    const userPk = this.$cookies.get('userPk');
+    console.log('userPk: ' + userPk);
+    const that = this;
+    axios.get('http://127.0.0.1:8000/member/' + userPk + '/')
+      .then(response => {
+        console.log('MileageHistory response? ');
+        console.log(response);
+        that.usermileage = response.data.mileage;
+        that.username = response.data.username;
+      });
+    this.getHistory();
   },
 };
 </script>
 
 <style scoped>
 .name {
-  top: 25px;
-  left: 28px;
+  top: 20px;
+  left: 6px;
   position: absolute;
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 1.8rem;
 }
+
 .total {
   position: absolute;
-  top: 90px;
-  right: 95px;
-  font-size: 30px;
+  top: 80px;
+  right: 120px;
+  font-size: 3rem;
+  font-weight: bolder;
 }
+
 table thead tr th {
   font-size: 22px;
   height: 50px;
 }
+
 table tbody tr td {
   font-size: 18px;
   height: 30px;
-}
-</style>
+}</style>

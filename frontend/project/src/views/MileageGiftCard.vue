@@ -1,5 +1,6 @@
 <template>
   <div>
+    <shinhan-navigation-bar></shinhan-navigation-bar>
     <div style="position: relative">
       <img src="../assets/mileage/giftcard10000.png" alt="" />
       <span class="il-man">100,000</span>
@@ -15,10 +16,11 @@
 </template>
 
 <script>
+import ShinhanNavigationBar from '@/components/ShinhanNavigationBar.vue';
 export default {
-  beforeCreate() {
-    this.$emit("barType", "shinhan");
-  },
+  components: {
+    ShinhanNavigationBar,
+  }
 };
 </script>
 
