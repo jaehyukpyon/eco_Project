@@ -9,6 +9,7 @@ import MissionPhotoUpload from '../views/MissionPhotoUpload.vue'
 import EcoMission from '../views/EcoMission.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Calendar from '../views/Calendar.vue'
 
 
 const routes = [
@@ -70,6 +71,11 @@ const routes = [
     name: 'register',
     component: Register,
   },
+  {
+    path: '/calendar',
+    name: 'calendar',
+    component: Calendar,
+  }
 
 ]
 

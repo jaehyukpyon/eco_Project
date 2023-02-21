@@ -9,15 +9,17 @@
       </p>
     </div>
   </div>
-  <div class="img" style="margin-top: 40px; text-align: center; position: relative;">
+  <div class="img" style="margin-top: 50px; text-align: center; position: relative;">
       <div v-if="type === 'eco_mission_none'"></div>
       <img src="../assets/eco_mission/mission_none.png" width="400" height="200" alt=""/>
       <img class="change" src="../assets/eco_mission/mission_done.png" width="50" height="50" style="position: absolute; top: 60px; left: 345px;" @click="changeType">
+      
       <div v-if="type === 'eco_mission_done'"></div>
       <img src="../assets/eco_mission/mission_done.png" width="400" height="200" alt=""/>
       <img class="change" src="../assets/eco_mission/mission_none.png" width="50" height="50" style="position: absolute; top: 60px; left: 345px;" @click="changeType">
     </div>
   </div>
+  
 </template>
 <script>
 
@@ -33,18 +35,13 @@ export default ({
       else if(this.type == 'eco_mission_done') this.type='mission_none'
     }
   },
-  // computed: {
-  //   subTitle() {
-  //     return this.proData.subTitle.replace("\n", "<br />")
-  //   }
-  // }
 });
 </script>
 <style scoped>
 .title {
   display: inline-block;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 32px;
   position: center;
   color: #25bf8b;
 }
