@@ -14,7 +14,7 @@
         <tbody>
           <tr>
             <td><a>마일리지 내역</a></td>
-            <td><a href="">마일리지 사용</a></td>
+            <td><a href="" @click.prevent="openModal">마일리지 사용</a></td>
           </tr>
           <tr>
             <td><a href="">친환경 걷기</a></td>
@@ -22,6 +22,12 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div v-if="showModal" style="width: 400px; height: 480px; background-color: white; position: absolute; top: 60px; left: 45px;">
+      <img class="modal" src="../assets/modal/top.png" width="400" height="80" @click="closeModal">
+      <img class="modal" src="../assets/modal/middle.png" width="400" height="200" @click="moveToGiftCard">
+      <img class="modal" src="../assets/modal/bottom.png" width="400" height="200" @click="moveToBarCode">
     </div>
 
     <div class="temperature">
@@ -61,12 +67,35 @@ export default {
     ShinhanNavigationBar,
   },
   data() {
-
+    return {
+      showModal: false,
+    };
+  },
+  methods: {
+    openModal() {
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    moveToGiftCard() {
+      this.$router.push('/mileage/giftcard');
+    },
+    moveToBarCode() {
+      this.$router.push('/mileage/barcode');
+    }
   }
 };
 </script>
 
 <style scoped>
+img.modal:hover {
+  cursor: pointer;
+}
+
+section {
+  position: relative; 
+}
 .temperature {
   width: 412px;
   height: 52px;
