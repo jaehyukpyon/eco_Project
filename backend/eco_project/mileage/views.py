@@ -4,7 +4,6 @@ from .serializers import MileageSerializer
 from django.http import HttpResponse
 
 
-
 # GET POST 기능 (마일리지 획득)
 class MileageList(
         mixins.ListModelMixin,
@@ -28,6 +27,8 @@ class MileageList(
             user = request.user
             user.mileage += int(request.data.get('mileage'))
             user.save()
+            request.POST._mutable = True
+            request.POST['user'] = request.user.id
             return self.create(request, args, kwargs)
         else:
             return HttpResponse(status=401)

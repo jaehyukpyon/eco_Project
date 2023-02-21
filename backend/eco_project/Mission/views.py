@@ -34,11 +34,12 @@ class CompletedMissionList(
     
     def post(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            user = request.user
+            obj = CompletedMission.objects.get(pk=request.data.get('mission'))
+            obj.user.mileage += int(obj.mission.mileage_reward)
+            obj.user.save()
+            request.POST._mutable = True
+            request.POST['user'] = request.user.id
             res = self.create(request, args, kwargs)
-            obj = CompletedMission.objects.get(pk=res.data['id'])
-            user.mileage += int(obj.mission.mileage_reward)
-            user.save()
             return res
         else:
             return HttpResponse(status=401)

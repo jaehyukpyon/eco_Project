@@ -9,5 +9,6 @@ class Mission(models.Model):
 
 # 완료한 미션 목록
 class CompletedMission(models.Model):
+    user = models.ForeignKey(Member, default=1, on_delete=models.CASCADE)
     mission = models.ForeignKey(Mission, on_delete=models.CASCADE)
     date_completed = models.DateTimeField(auto_now_add=True)
