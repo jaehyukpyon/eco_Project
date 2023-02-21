@@ -29,14 +29,27 @@
           username: username,          
           password: password,
         }).then(response => {
-          if (response.ok) {
+          console.log(response);
+          if (response.status == 200) {
             alert('회원가입이 완료되었습니다.');
-            this.$router.push('/login');
+
+            axios.get('http://127.0.0.1:8000/member/')
+              .then(response => {
+                console.log(response);
+                response.data.forEach(member => {
+                  if (member.username == username) {
+                    this.$cookies.set('userId', member.id);
+                  }
+                });
+                console.log('test1'); // 나중에
+                this.$router.push('/login');
+              });
+              console.log('test2'); // 먼저
           } else {
             alert('회원가입 오류 발생.');
           }
         }).catch(error => {
-          alert('서버 오류 발생.');
+          alert('회원가입 서버 오류 발생.');
         })
       }
     },

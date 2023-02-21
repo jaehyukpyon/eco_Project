@@ -8,6 +8,8 @@ import MileageGiftCard from '../views/MileageGiftCard.vue'
 import MissionPhotoUpload from '../views/MissionPhotoUpload.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import Re100 from '../views/Re100.vue'
+import OrderStock from '../views/OrderStock.vue'
 import AccountCreateView from '../views/AccountCreateView'
 import AccountConfirmView from '../views/AccountConfirmView'
 
@@ -67,6 +69,16 @@ const routes = [
     component: Register,
   },
   {
+    path: '/stock/re100',
+    name: 're100',
+    component: Re100,
+  },
+  {
+    path: '/stock/order',
+    name: "stock-order",
+    component: OrderStock,
+  },
+  {
     path: '/account',
     name: 'account',
     component: AccountCreateView,
@@ -76,7 +88,6 @@ const routes = [
     name: 'account-confirm',
     component: AccountConfirmView,
   },
-
 ]
 
 const router = createRouter({
