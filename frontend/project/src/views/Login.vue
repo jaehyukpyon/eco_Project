@@ -7,17 +7,43 @@
     </div>
 
     <label for="uname"><b>유저네임</b></label>
-    <input type="text" placeholder="유저네임을 입력하세요." name="username" id="username" required />
+    <input type="text" placeholder="유저네임을 입력하세요." name="username" id="username" required ref="username" />
 
     <label for="psw"><b>비밀번호</b></label>
-    <input type="password" placeholder="비밀번호를 입력하세요." name="password" id="password" required />
+    <input type="password" placeholder="비밀번호를 입력하세요." name="password" id="password" required ref="password" />
 
-    <button type="submit">로그인하기</button>
+    <button @click="login">로그인하기</button>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+
+export default {
+  methods: {
+    login() {
+      const username = this.$refs.username.value;
+      const password = this.$refs.password.value;
+
+      axios.post('http://127.0.0.1:8000/member/login/', {
+        username: username,
+        password: password,
+      }).then(response => {
+        console.log(response);
+        if (response.status == 200) {
+          alert('로그인 되었습니다.');
+          console.log(response.data);
+          this.$cookies.set('accessToken', response.data.access);
+          console.log(this.$cookies.isKey('accessToken'));
+        } else {
+          alert('로그인 실패. 유저네임 혹은 비밀번호를 확인하세요.');
+        }
+      }).catch(error => {
+        alert('로그인 서버 오류 발생.');
+      });
+    },
+  }
+};
 </script>
 
 <style scoped>
