@@ -5,7 +5,8 @@ import random
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login as django_login
+
 
 # User 전체 목록 보기
 class UserList(generics.ListAPIView):
@@ -34,18 +35,3 @@ def register(request):
     user = Member.objects.create_user(username=username, password=password, account=account)
     return Response({'message': 'User created successfully.'})
 
-
-@api_view(['POST'])
-def login(request):
-    username = request.data.get('username')
-    password = request.data.get('password')
-    user = authenticate(request, username=username, password=password)
-    if not user:
-        return Response({'error': 'Invalid username or password.'})
-    refresh = RefreshToken.for_user(user)
-    return Response({
-        'access': str(refresh.access_token),
-        'refresh': str(refresh)
-    })
-
-        
