@@ -9,6 +9,7 @@ from rest_framework.response import Response
 # GET POST 기능 (마일리지 획득)
 class MileageList(
         mixins.ListModelMixin,
+        mixins.CreateModelMixin,
         generics.GenericAPIView):
     serializer_class = MileageSerializer
 
