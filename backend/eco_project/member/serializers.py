@@ -12,7 +12,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class ViewUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
-        fields = ['id', 'username', 'account']
+        fields = ['id', 'username', 'account', 'mileage']
 
 
 # class CustomTokenSerializer(serializers.ModelSerializer):
