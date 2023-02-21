@@ -32,10 +32,13 @@ export default {
         console.log(response);
         if (response.status == 200) {
           alert('로그인 되었습니다.');
+          console.log('로그인 페이지 response.data');
           console.log(response.data);
           this.$cookies.set('accessToken', response.data.access);
+          console.log('로그인 페이지에서 cookie에 accessToken이 있는지 true/false 확인.');
           console.log(this.$cookies.isKey('accessToken'));
 
+          // 회원가입부터 진행하면 아래 코드를 실행 안 해도 상관 없으나, 로그인 부터 진행할경우 아래 코드 필요.
           axios.get('http://127.0.0.1:8000/member/')
               .then(response => {
                 console.log(response);

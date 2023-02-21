@@ -35,16 +35,15 @@
 
             axios.get('http://127.0.0.1:8000/member/')
               .then(response => {
+                console.log('회원가입 페이지 - 유저 전체 조회')
                 console.log(response);
                 response.data.forEach(member => {
                   if (member.username == username) {
                     this.$cookies.set('userPk', member.id);
                   }
                 });
-                console.log('test1'); // 나중에
                 this.$router.push('/login');
               });
-              console.log('test2'); // 먼저
           } else {
             alert('회원가입 오류 발생.');
           }
