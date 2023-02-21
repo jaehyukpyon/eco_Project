@@ -9,8 +9,9 @@ class MissionList(generics.ListCreateAPIView):
 
 # 미션 세부보기
 class MissionDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Mission.objects.all()
     serializer_class = MissionSerializer
+    queryset = Mission.objects.all().order_by('id')
+
 
 # 완료한 미션
 class CompletedMissionCreate(generics.ListCreateAPIView):
