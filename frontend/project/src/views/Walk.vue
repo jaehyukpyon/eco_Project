@@ -1,5 +1,6 @@
 <template>
   <div>
+    <green-bar></green-bar>
     <div class="box">
       <div class="percent">
         <svg>
@@ -28,7 +29,13 @@
 </template>
 
 <script>
+import axios from 'axios';
+import GreenBar from '../components/GreenBar.vue';
+
 export default {
+  components: {
+    GreenBar,
+  },
   data() {
     return {
       percent: 0,
@@ -41,20 +48,52 @@ export default {
   },
   methods: {
     oneWalk() {
-      if (this.walk >= 10000 || this.percent >= 100) return;
+      if ((this.walk + 1) > 10000) {
+        alert('오늘은 1만 걸음을 다 채우셨습니다. 내일 걸음수가 초기화 됩니다!');
+        return;
+      }
       this.walk += 1;
+      if (this.walk === 10000) {
+        this.addMileage();
+      }
       const percent = ((this.walk / 10000) * 100).toFixed(2);
       this.percent = percent >= 100 ? 100 : percent;
       this.$refs.bar.style.strokeDashoffset =
         "calc(440 - (440 * (" + this.walk + "/10000) * 100) / 100)";
     },
     fullWalk() {
-      if (this.walk >= 10000 || this.percent >= 100) return;
+      if ((this.walk + 1) > 10000) {
+        alert('오늘은 1만 걸음을 다 채우셨습니다. 내일 걸음수가 초기화 됩니다!');
+        return;
+      }
       this.walk = 10000;
+      alert('1만 걸음 채우기 완료! 100마일리지가 적립되었습니다!');
+      this.addMileage();
       this.percent = 100;
       this.$refs.bar.style.strokeDashoffset =
         "calc(440 - (440 * (" + this.walk + "/10000) * 100) / 100)";
     },
+    addMileage() {
+      const userPk = this.$cookies.get('userPk');
+      const activity = '하루1만보걷기';
+      const mileage = 100;
+      const accessToken = this.$cookies.get('accessToken');
+      console.log('userPk: ' + userPk);
+      console.log('accessToken: ' + accessToken);
+      axios.post('http://127.0.0.1:8000/mileage/', {
+          user: userPk,
+          activity: activity,
+          mileage: mileage,
+        },
+        {
+          headers: {
+            Authorization: 'JWT ' + accessToken,
+          }
+        }
+      ).then(response => {
+        alert('1만 걸음 채우기 완료! 100마일리지가 적립되었습니다!');
+      });
+    }
   },
 };
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <shinhan-navigation-bar></shinhan-navigation-bar>
     <div style="position: relative">
       <img src="../assets/mileage/giftcard10000.png" alt="" />
       <span class="il-man">100,000</span>
@@ -8,21 +9,27 @@
       <img src="../assets/mileage/giftcard30000.png" alt="" />
       <span class="sam-man">300,000</span>
     </div>
-    <div style="text-align: center">
+    <div class="top-wrap" style="text-align: center">
       <img src="../assets/mileage/notice2.png" alt="" />
+      <img src="../assets/mileage/notice3.png" alt="">
     </div>
   </div>
 </template>
 
 <script>
+import ShinhanNavigationBar from '@/components/ShinhanNavigationBar.vue';
 export default {
-  beforeCreate() {
-    this.$emit("barType", "shinhan");
-  },
+  components: {
+    ShinhanNavigationBar,
+  }
 };
 </script>
 
 <style scoped>
+div.top-wrap {
+  height: 180px;
+  overflow: auto;
+}
 span {
   position: absolute;
   display: inline-block;
