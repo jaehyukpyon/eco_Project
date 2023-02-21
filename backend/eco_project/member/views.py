@@ -34,4 +34,3 @@ def register(request):
         return Response({'error': 'User with this username already exists.'})
     user = Member.objects.create_user(username=username, password=password, account=account)
     return Response({'message': 'User created successfully.'})
-
