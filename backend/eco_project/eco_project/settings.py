@@ -39,14 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'Mission',
     'mileage',
     'member',
+    "corsheaders",
 ]
 
 
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'eco_project.urls'
@@ -131,9 +135,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
 }
-
+import datetime
+SIMPLE_JWT = { # jwt 가 동작하는 방식
+    # Token의 유효기간 
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(days=2), # 2시간 안에 한
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=1), # 자동 로그인
+    "AUTH_HEADER_TYPES": ("JWT", ),
+}
 AUTH_USER_MODEL='member.Member'
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
