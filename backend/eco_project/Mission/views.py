@@ -12,7 +12,7 @@ class MissionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Mission.objects.all()
     serializer_class = MissionSerializer
 
-# 완료한 미션 보기
-class CompletedMissionCreate(generics.CreateAPIView):
+# 완료한 미션
+class CompletedMissionCreate(generics.ListCreateAPIView):
     queryset = CompletedMission.objects.all()
     serializer_class = CompletedMissionSerializer
