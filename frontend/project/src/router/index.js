@@ -8,6 +8,8 @@ import MileageGiftCard from '../views/MileageGiftCard.vue'
 import MissionPhotoUpload from '../views/MissionPhotoUpload.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import AccountCreateView from '../views/AccountCreateView'
+import AccountConfirmView from '../views/AccountConfirmView'
 
 
 const routes = [
@@ -63,6 +65,16 @@ const routes = [
     path: '/register',
     name: 'register',
     component: Register,
+  },
+  {
+    path: '/account',
+    name: 'account',
+    component: AccountCreateView,
+  },
+  {
+    path: '/account/confirm',
+    name: 'account-confirm',
+    component: AccountConfirmView,
   },
 
 ]
