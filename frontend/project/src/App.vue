@@ -1,6 +1,8 @@
 <template>
-  <status-bar></status-bar>    
-  <router-view></router-view>
+  <status-bar></status-bar>  
+  <green-bar v-if="barType === 'green'"></green-bar>
+  <shinhan-navigation-bar v-else :currentPath="currentPath"></shinhan-navigation-bar>
+  <router-view @sendCurrentPath="receiveCurrentPath" @barType="getBarType"></router-view>
   <shinhan-footer-navigation></shinhan-footer-navigation>
 </template>
 
