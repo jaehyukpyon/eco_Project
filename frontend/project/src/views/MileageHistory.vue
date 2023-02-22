@@ -79,7 +79,7 @@ export default {
 
 <style scoped>
 .name {
-  top: 20px;
+  top: 15px;
   left: 6px;
   position: absolute;
   font-weight: bolder;
@@ -88,8 +88,8 @@ export default {
 
 .total {
   position: absolute;
-  top: 82px;
-  right: 120px;
+  top: 75px;
+  right: 100px;
   font-size: 2.5rem;
   font-weight: bolder;
 }
