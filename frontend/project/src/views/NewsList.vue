@@ -11,7 +11,7 @@
       </div>
 
       <div class="first">
-        <a :href="firstNews[0]">
+        <a :href="firstNews[0]" target="_blank">
         <div class="first-image" style="width: 430px; height: 250px; background-color: white; border-radius: 20px">
           <img :src="firstNews[1]" width=430 height=250 style="border-radius: 20px"> 
         </div>
@@ -34,7 +34,7 @@
 
       <div style="overflow: auto; height: 250px;">
 
-        <a :href="item[0]" v-for="(item, index) in newsList" :key="item[0]">
+        <a :href="item[0]" v-for="(item, index) in newsList" :key="item[0]" target="_blank">
           <div style="position: relative; margin-top: 10px; margin-right: 15px;">
             <div style="width: 150px; height: 100px; margin-left: 25px; background-color: white; border-radius: 20px; display: inline-block">
               <img :src="item[1]" width="150" height="100">
