@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'mileage',
     'member',
     'news',
+    'stock',
     'corsheaders',
 ]
 
