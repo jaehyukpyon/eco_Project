@@ -42,6 +42,12 @@ export default {
       url: null,
       missionTitle: null,
       missionDescription: null,
+      missionType: {
+      1: '텀블러',
+      2: '분리수거',
+      3: '대중교통',
+      4: '장바구니',
+      },
     };
   },
   methods: {
@@ -65,12 +71,15 @@ export default {
       console.log('missionphotoupload 페이지에서 업로드 버튼 눌렀을 때 missionId: ' + missionId);
       const accessToken = this.$cookies.get('accessToken');
       console.log('accessToken: ' + that.$cookies.get('accessToken'));
+      const frm = new FormData();
+      frm.append('mission', Number(missionId));
+
       axios.post('http://127.0.0.1:8000/mission/complete/', {
           mission: Number(missionId)
         },
         {
           headers: {
-            Authorization: 'JWT ' + accessToken
+            Authorization: 'JWT ' + accessToken,
           }
         }
       ).then(response => {
@@ -81,6 +90,19 @@ export default {
       }).catch(error => {
         console.log('error?');
         console.log(error);
+      });
+
+
+      axios.post('http://127.0.0.1:8000/mileage/', {
+        user: that.$cookies.get('userPk'),
+        activity: '미션(' + that.missionType[missionId] + ')',
+        mileage: 10,
+      }, {
+        headers: {
+          Authorization: 'JWT ' + accessToken,
+        }
+      }).then(result => {
+        console.log('일일미션: ' + missionId + '마일리지가 적립됨.')
       });
     }
   },
