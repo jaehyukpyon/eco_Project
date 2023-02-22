@@ -22,7 +22,7 @@
             </tr>
             <tr>
               <td><router-link to="/walk">친환경 걷기</router-link></td>
-              <td><router-link to="/eco_mission">미션</router-link></td>
+              <td><router-link to="/mileage/dailymission">데일리 미션</router-link></td>
             </tr>
           </tbody>
         </table>
