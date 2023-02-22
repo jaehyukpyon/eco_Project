@@ -1,13 +1,12 @@
 <template>
   <div>
+    <green-bar></green-bar>
     <div class="top-wrap">
       <img src="../assets/missionphotoupload/greenrectangle.png" alt="" />
       <div class="mission-text">
         <p>
-          <span class="mission-type">텀블러 사용하기</span><br /><br />
-          <span class="mission-description"
-            >카페에서 텀블러를<br />사용한 사진을<br />업로드 해주세요!</span
-          >
+          <span class="mission-type">{{ missionTitle }}</span><br /><br />
+          <span class="mission-description">{{ missionDescription }}</span>
         </p>
       </div>
     </div>
@@ -24,17 +23,31 @@
       </div>
     </div>
 
-    <div v-if="url" style="text-align: center;">
+    <div class="uploadbtn" v-if="url" style="text-align: center;" @click="uploadImage">
       <img src="../assets/missionphotoupload/uploadbtn.png" alt="">
     </div>
   </div>
 </template>
 
 <script>
+import GreenBar from '../components/GreenBar.vue'
+import axios from 'axios'
+
 export default {
+  components: {
+    GreenBar,
+  },
   data() {
     return {
       url: null,
+      missionTitle: null,
+      missionDescription: null,
+      missionType: {
+      1: '텀블러',
+      2: '분리수거',
+      3: '대중교통',
+      4: '장바구니',
+      },
     };
   },
   methods: {
@@ -42,10 +55,61 @@ export default {
       const file = e.target.files[0];
       this.url = URL.createObjectURL(file);
     },
+    getMissionInfo(missionId) {
+      const url = 'http://127.0.0.1:8000/mission/';
+      const that = this;
+      axios.get(url + missionId + '/').
+        then(response => {
+          console.log(response);
+          that.missionTitle = response.data.title;
+          that.missionDescription = response.data.description;
+        })
+    },
+    uploadImage() {
+      const that = this;
+      const missionId = this.$store.getters.getMissionId;
+      console.log('missionphotoupload 페이지에서 업로드 버튼 눌렀을 때 missionId: ' + missionId);
+      const accessToken = this.$cookies.get('accessToken');
+      console.log('accessToken: ' + that.$cookies.get('accessToken'));
+      const frm = new FormData();
+      frm.append('mission', Number(missionId));
+
+      axios.post('http://127.0.0.1:8000/mission/complete/', {
+          mission: Number(missionId)
+        },
+        {
+          headers: {
+            Authorization: 'JWT ' + accessToken,
+          }
+        }
+      ).then(response => {
+        console.log('uploadImage 사진 업로드 시 response');
+        console.log(response);
+        console.log('사진이 업로드 되었습니다.');
+        //that.$router.push('/mileage/dailymission');
+      }).catch(error => {
+        console.log('error?');
+        console.log(error);
+      });
+
+
+      axios.post('http://127.0.0.1:8000/mileage/', {
+        user: that.$cookies.get('userPk'),
+        activity: '미션(' + that.missionType[missionId] + ')',
+        mileage: 10,
+      }, {
+        headers: {
+          Authorization: 'JWT ' + accessToken,
+        }
+      }).then(result => {
+        console.log('일일미션: ' + missionId + '마일리지가 적립됨.')
+      });
+    }
   },
-  beforeCreate() {
-    this.$emit("sendCurrentPath", this.$route.path);
-    this.$emit("barType", "shinhan");
+  created() {
+    const missionId = this.$store.getters.getMissionId;
+    console.log('사진업로드페이지에서 missionId 조회: ', missionId);
+    this.getMissionInfo(missionId);
   },
 };
 </script>
@@ -100,5 +164,9 @@ input[type="file"] {
   left: 0;
   align-items: center;
   justify-content: center;
+}
+
+.uploadbtn {
+  cursor: pointer;
 }
 </style>

@@ -16,6 +16,7 @@ import AccountCreateView from '../views/AccountCreateView'
 import AccountConfirmView from '../views/AccountConfirmView'
 import Walk from '../views/Walk.vue'
 import DailyMission from '../views/DailyMission.vue'
+import AddMission from '../views/AddMission.vue'
 import AccountDone from '../views/AccountDone.vue'
 
 
@@ -114,11 +115,15 @@ const routes = [
     component: DailyMission,
   },
   {
+    path: '/addmission',
+    name: 'addmission',
+    component: AddMission,
+  },
+  {
     path: '/account/done',
     name: 'account-done',
     component: AccountDone,
   },
-
 ]
 
 const router = createRouter({
