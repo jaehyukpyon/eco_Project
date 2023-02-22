@@ -16,10 +16,10 @@
         />
       </div>
       <div class="item" style="margin-left: 40px; text-align: left">
-        <span>매장명</span>
+        <span>업체명</span>
       </div>
       <div class="item" style="margin-left: 100px; text-align: left">
-        <span>지점</span>
+        <span>매장명</span>
       </div>
       <div class="item" style="margin-left: 100px; text-align: left">
         <span>인증만료일</span>
@@ -29,97 +29,17 @@
         style="margin-top: 0px; text-aligen: center; position: relative"
       >
         <div v-if="type === 'bar'"></div>
-        <img src="../assets/topname/bar.png" width="480" height="40" alt="" />
+        <img src="../assets/topname/bar.png" width="480" height="40" alt='' />
       </div>
     </div>
     <div style="height: 405px; overflow: auto;">
       <table>
         <tbody style="text-align: center">
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
-          <tr>
-            <td>이마트</td>
-            <td>성수점</td>
-            <td>2023/11/23</td>
-          </tr>
+          <tr v-for="(item, index) in greenMarket">
+            <td>{{ item['업체명']}}</td>
+            <td>{{ item['매장명']}}</td>
+            <td>{{ item['지정기간'].substr(13, 10) }}</td>
+          </tr>          
         </tbody>
       </table>
     </div>
@@ -127,6 +47,8 @@
 </template>
 <script>
 import ShinhanNavigationBar from '../components/ShinhanNavigationBar.vue'
+import axios from 'axios'
+
 export default {
   //emits: ["topName", "bar"],
   components: {
@@ -136,17 +58,25 @@ export default {
     return {
       type: "topname",
       type: "bar",
-      list: [
-        {
-          name: '이마트',
-          loc: '성수점',
-          exp: '2023.11.13'
-        },
-      ]
+      greenMarket: null,
     };
   },
   methods: {},
-  created() {},
+  created() {
+    const that = this;
+    const url = 'https://api.odcloud.kr/api/15043633/v1/uddi:a76efb81-83c1-4f51-9e20-b3e27a5ee186?page=1&perPage=50&serviceKey=pzrN8H960G93rU0CszxDfKi2qHrbWd20Douh32F6cX%2FQU4oB9yUwp3Ew%2FN2KlMSjV%2F%2FgsekEGV5kpcIhYDDJDA%3D%3D';
+    axios.get(url)
+      .then(response => {
+        console.log('녹색매장 리스트');
+        console.log(response.data.data)
+        that.greenMarket = response.data.data;
+        //console.log('greenMarket??')
+        //console.log(greenMarket)
+      }).catch(error => {
+        console.log('녹색기업 크롤링 중 오류발생')
+        console.log(error)
+      })
+  },
 };
 </script>
 <style scoped>

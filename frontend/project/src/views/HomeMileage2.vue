@@ -210,7 +210,7 @@ export default {
 .button span {
   position: absolute;
   top: 15px;
-  left: 48px;
+  left: 50px;
 }
 
 .use {
@@ -232,8 +232,8 @@ export default {
 
 .use > span {
   position: absolute; 
-  top: 10px; 
-  left: 110px;
+  top: 12px; 
+  left: 112px;
 }
 
 .modal {

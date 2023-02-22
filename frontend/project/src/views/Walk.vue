@@ -116,6 +116,7 @@ export default {
     },
     toggleModal() {
       this.showModal = !this.showModal;
+      this.$router.push('/calendar');
     },
   },
 };
