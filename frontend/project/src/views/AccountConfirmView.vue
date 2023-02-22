@@ -7,14 +7,48 @@
     <div class="temple">
         <p class="title">인식된 <b>신분증 정보</b>를 확인하고<br> 잘못된 경우 <b>직접 수정</b>해주세요! </p>
     </div>
-    <div class="input_div">
-        <input type="text" name="username" hint="이름"> 
-        <input type="text" name="number" hint="주민번호"> 
-        <input type="text" name="date" hint="날짜">
+    <div class="container">
+    <div style="text-align: center;">
     </div>
+
+    <label for="name"><b>이름</b></label>
+    <input type="text" placeholder="가입하실 이름을 입력해주세요." />
+    
+    <label for=""><b>주민번호</b></label>
+    <input type="number" placeholder="주민번호를 입력해주세요." />
+
+    <label for="date"><b>발급일자</b></label>
+    <input type="number" placeholder="받급 받으실 날짜를 입력해주세요." />
+
+    </div>
+    <button @click="next" style="margin-top: 65px;">다음</button>
 </template>
 
+
 <style scoped>
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  button {
+    background-color: #25BF8B;
+    color: white;
+    padding: 17px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  .container {
+    padding: 16px;
+  }
+
     .temple {
         height: 250px;
     }
@@ -41,6 +75,14 @@
     export default {
         components: {
             GreenBar,
+        },
+        methods: {
+            confirm() {
+                const name= this.$refs.name.value;
+                const number=this.$refs.number.value;
+                const date= this.$refs.date.value;
+            }
         }
+        
     };
 </script>
