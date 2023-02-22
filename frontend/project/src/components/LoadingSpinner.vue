@@ -13,14 +13,14 @@ export default {};
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 740px;
+  height: 550px;
 }
 .spinner {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 10px solid #e0e0e0;
-  border-bottom: 5px solid #25BF8B;
+  border: 5px solid #e0e0e0;
+  border-bottom: 5px solid #5BDEB2;
   animation: spin 1s linear infinite;
   position: relative;
 }
