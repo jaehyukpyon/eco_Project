@@ -44,7 +44,7 @@ export default {
   methods: {
     buy(id) {
       const that = this;
-      let url = 'http://localhost:8000/member/' + this.$cookies.get('userPk') + '/'
+      let url = 'http://127.0.0.1:8000/member/' + this.$cookies.get('userPk') + '/'
       axios.get(url)
         .then(response => {
           console.log(response);

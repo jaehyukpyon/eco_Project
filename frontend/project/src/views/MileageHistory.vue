@@ -1,6 +1,6 @@
 <template>
   <div>
-    <green-bar></green-bar>
+    <shinhan-navigation-bar></shinhan-navigation-bar>
     <div style="margin-top: 30px; margin-left: 35px; position: relative">
       <span class="name">{{ username }}</span>
       <img src="../assets/mileage/currentmileage.png" alt="" />
@@ -31,10 +31,11 @@
 <script>
 import axios from 'axios'
 import GreenBar from '@/components/GreenBar.vue';
-
+import ShinhanNavigationBar from '@/components/ShinhanNavigationBar.vue';
 export default {
   components: {
     GreenBar,
+    ShinhanNavigationBar,
   },  
   data() {
     return {

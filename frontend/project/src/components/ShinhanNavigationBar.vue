@@ -2,29 +2,19 @@
   <nav>
     <ol class="shinhan-header" ref="header">
       <li class="shinhan-header-link">
-        <a href="#"
-          >뉴스<br />커뮤니티</a
-        >
+        <router-link to="/news">뉴스<br />커뮤니티</router-link>        
+      </li>
+      <li class="shinhan-header-link">        
+        <router-link to="/mileage">친환경<br />마일리지</router-link>
       </li>
       <li class="shinhan-header-link">
-        <a href="#" 
-          >친환경<br />마일리지</a
-        >
+        <router-link to="/mileage/history">친환경<br />계좌</router-link>
       </li>
       <li class="shinhan-header-link">
-        <a href="#"
-          >친환경<br />계좌</a
-        >
+        <router-link to="/mileage/dailymission">친환경<br />미션</router-link>
       </li>
       <li class="shinhan-header-link">
-        <a href="#" 
-          >친환경<br />미션</a
-        >
-      </li>
-      <li class="shinhan-header-link">
-        <a href="#" 
-          >친환경<br />주식</a
-        >
+        <router-link to="/stock/re100">친환경<br />주식</router-link>
       </li>
       <li class="shinhan-header-link">
         <img

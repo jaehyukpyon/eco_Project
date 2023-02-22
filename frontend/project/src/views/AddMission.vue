@@ -1,6 +1,9 @@
 <template>
   <div>
-    <button @click="addMission">미션 넣기</button>
+    <button @click="addMission(0)">텀블러</button>
+    <button @click="addMission(1)">분리수거</button>
+    <button @click="addMission(2)">대중교통</button>
+    <button @click="addMission(3)">장바구니</button>
   </div>
 </template>
 
@@ -35,19 +38,17 @@ export default {
     };
   },
   methods: {
-    addMission() {
+    addMission(missionNum) {
       const url = 'http://127.0.0.1:8000/mission/';
       const accessToken = this.$cookies.get('accessToken');
 
-      this.missionList.forEach(mission => {
-        axios.post(url, mission, {
-          headers: {
-            Authorization: 'JWT ' + accessToken,
-          }
-        }).then(result => {
-          console.log('mission 등록 완료!');
-          console.log(mission);
-        })
+      const target = this.missionList[missionNum];
+      axios.post(url, target, {
+        headers: {
+          Authorization: 'JWT ' + accessToken,
+        }
+      }).then(result => {
+        console.log(result.data);
       })
     },
   }

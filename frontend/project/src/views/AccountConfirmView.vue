@@ -21,7 +21,7 @@
     <input type="number" placeholder="받급 받으실 날짜를 입력해주세요." />
 
     </div>
-    <button @click="next" style="margin-top: 65px;">다음</button>
+    <button @click="next" style="margin-top: 45px;">다음</button>
 </template>
 
 
@@ -81,6 +81,9 @@
                 const name= this.$refs.name.value;
                 const number=this.$refs.number.value;
                 const date= this.$refs.date.value;
+            },
+            next() {
+                this.$router.push('/account/done')
             }
         }
         
