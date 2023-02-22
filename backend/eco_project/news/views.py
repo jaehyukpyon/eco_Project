@@ -4,6 +4,7 @@ from rest_framework import status
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 # RE100 사이트를 GET
 class InnerTextView(APIView):
@@ -24,9 +25,12 @@ class InnerTextView(APIView):
 # 최신 뉴스를 GET
 class NewsView(APIView):
     def get(self, request):
+  
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
         url = "https://www.sedaily.com/Cube/CubeCollect/249"
 
-        driver = webdriver.Chrome()  # Change this to the path of your chromedriver executable
+        driver = webdriver.Chrome(options=options)  # Change this to the path of your chromedriver executable
         driver.get(url)
         soup = BeautifulSoup(driver.page_source, 'html.parser')
         driver.quit()
