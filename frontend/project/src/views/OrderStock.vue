@@ -291,13 +291,13 @@ table {
 
 .mileage-calc {
   top: 500px;
-  left: 190px;
+  left: 194px;
   font-size: 1.5rem;
 }
 
 .ment {
   top: 470px!important;
-  right: 18px;
+  right: 14px!important;
   font-size: 1.3rem;
 }
 
