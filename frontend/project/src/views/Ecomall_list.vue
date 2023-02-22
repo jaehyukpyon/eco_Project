@@ -1,5 +1,7 @@
 <template>
   <div>
+    <shinhan-navigation-bar></shinhan-navigation-bar>
+    <div style="width: 100px; height: 100px; background-color: white; position: absolute; top: 165px; left: 0px; z-index: 100;"></div>
     <div>
       <div
         class="img"
@@ -124,12 +126,23 @@
   </div>
 </template>
 <script>
+import ShinhanNavigationBar from '../components/ShinhanNavigationBar.vue'
 export default {
   //emits: ["topName", "bar"],
+  components: {
+    ShinhanNavigationBar,
+  },
   data() {
     return {
       type: "topname",
       type: "bar",
+      list: [
+        {
+          name: '이마트',
+          loc: '성수점',
+          exp: '2023.11.13'
+        },
+      ]
     };
   },
   methods: {},
@@ -145,6 +158,10 @@ table tbody {
 }
 table td {
   width: 33.3333%;
+}
+
+tr {
+  height: 45px;
 }
 div.item {
   display: inline-block;

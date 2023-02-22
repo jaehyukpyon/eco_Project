@@ -22,8 +22,20 @@
     <div class="buttons">
       <button class="oneWalk" @click="oneWalk">한 걸음 걷기</button>
       <button class="fullWalk" @click="fullWalk">
-        10,000걸음 한 번에 걷기
+        만걸음 한 번에 걷기
       </button>
+    </div>
+
+    <div class="modal" v-show="showModal">
+      <div>
+        <p style="color: #25BF8B; font-size: 1.5rem; font-weight: bolder; margin-left: 20px; display: inline-block;">알림</p>
+        <p class="modal-close" style="float: right; display: inline-block; font-size: 1.5rem; margin-right: 20px;" @click="toggleModal">X</p>
+      </div>
+      <div style="width: 100%; height: 0.5px; background-color: lightgray"></div>
+      <br>
+      <div class="modal-content" style="margin-left: 20px; background-color: #F6F6F6; width: 91%; height: 60px">
+        <p>{{ modalMessage }}</p>
+      </div>      
     </div>
   </div>
 </template>
@@ -40,6 +52,8 @@ export default {
     return {
       percent: 0,
       walk: 0,
+      showModal: false,
+      modalMessage: '',
     };
   },
   mounted() {
@@ -49,7 +63,9 @@ export default {
   methods: {
     oneWalk() {
       if ((this.walk + 1) > 10000) {
-        alert('오늘은 1만 걸음을 다 채우셨습니다. 내일 걸음수가 초기화 됩니다!');
+        //alert('오늘은 1만 걸음을 다 채우셨습니다. 내일 걸음수가 초기화 됩니다!');
+        this.modalMessage = '오늘 만걸음을 다 채우셨습니다. 내일 걸음수가 초기화 됩니다.'
+        this.showModal = true;
         return;
       }
       this.walk += 1;
@@ -63,20 +79,22 @@ export default {
     },
     fullWalk() {
       if ((this.walk + 1) > 10000) {
-        alert('오늘은 1만 걸음을 다 채우셨습니다. 내일 걸음수가 초기화 됩니다!');
+        //alert('오늘은 1만 걸음을 다 채우셨습니다. 내일 걸음수가 초기화 됩니다!');
+        this.modalMessage = '오늘 만걸음을 다 채우셨습니다. 내일 걸음수가 초기화 됩니다.'
+        this.showModal = true;
         return;
       }
       this.walk = 10000;
-      alert('1만 걸음 채우기 완료! 100마일리지가 적립되었습니다!');
       this.addMileage();
       this.percent = 100;
       this.$refs.bar.style.strokeDashoffset =
         "calc(440 - (440 * (" + this.walk + "/10000) * 100) / 100)";
     },
     addMileage() {
+      const that = this;
       const userPk = this.$cookies.get('userPk');
-      const activity = '하루1만보걷기';
-      const mileage = 100;
+      const activity = '하루만걸음';
+      const mileage = 20;
       const accessToken = this.$cookies.get('accessToken');
       console.log('userPk: ' + userPk);
       console.log('accessToken: ' + accessToken);
@@ -91,16 +109,21 @@ export default {
           }
         }
       ).then(response => {
-        alert('1만 걸음 채우기 완료! 100마일리지가 적립되었습니다!');
+        //alert('1만 걸음 채우기 완료! 100마일리지가 적립되었습니다!');
+        that.modalMessage = '만걸음 채우기 완료! 20마일리지가 적립되었습니다!'
+        that.showModal = true;
       });
-    }
+    },
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
   },
 };
 </script>
 
 <style scoped>
 .buttons {
-  margin-top: 90px;
+  margin-top: 65px;
 }
 button {
   width: 100%;
@@ -179,5 +202,53 @@ button:hover {
   padding: 10px 0 0;
   color: #999;
   font-weight: 700;
+}
+
+
+.modal {
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  border-radius: 20px;
+  height: 150px;
+}
+
+.modal:before, .modal:after {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+  -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+  box-shadow:0 0 20px rgba(0,0,0,0.8);
+  top:0;
+  bottom:0;
+  left:10px;
+  right:10px;
+  -moz-border-radius:100px / 10px;
+  border-radius:100px / 10px;
+}
+
+.modal:after {
+  right:10px;
+  left:auto;
+  -webkit-transform:skew(8deg) rotate(3deg);
+  -moz-transform:skew(8deg) rotate(3deg);
+  -ms-transform:skew(8deg) rotate(3deg);
+  -o-transform:skew(8deg) rotate(3deg);
+  transform:skew(8deg) rotate(3deg);
+}
+.modal {
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  background: white; 
+  position: absolute; 
+  top: 330px; 
+  left: 15px; 
+  width: 450px;
+}
+
+.modal-close:hover {
+  cursor: pointer;
 }
 </style>

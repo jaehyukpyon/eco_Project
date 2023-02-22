@@ -102,7 +102,8 @@ export default {
           Authorization: 'JWT ' + accessToken,
         }
       }).then(result => {
-        console.log('일일미션: ' + missionId + '마일리지가 적립됨.')
+        console.log('일일미션번호?: ' + missionId + ',,, 잘 적립됨!');
+        that.$router.push('/mileage/dailymission');
       });
     }
   },
@@ -148,7 +149,7 @@ input[type="file"] {
 }
 
 .mission-description {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .top-wrap {
   margin-top: 20px;

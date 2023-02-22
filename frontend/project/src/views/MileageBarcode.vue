@@ -1,5 +1,6 @@
 <template>
   <div>
+    <shinhan-navigation-bar></shinhan-navigation-bar>
     <div>
       <p>
         <span class="green">녹색매장</span>에서<br />
@@ -20,17 +21,21 @@
       </div>
     </div>
     <div style="margin-top: 25px; text-align: center;">
-      <img src="../assets/greenlogo/greenmarks.png" width="400" height="170" alt="">
+      <img src="../assets/greenlogo/greenmarks.png" width="400" height="150" alt="">
     </div>
     <div class="checklist" style="margin-top: 20px;">
-      <img class="checklist" src="../assets/greenlogo/checkgreenlist_svg.svg" width="485" height="45" alt="">
+      <router-link to="/ecomall-list"><img class="checklist" src="../assets/greenlogo/checkgreenlist_svg.svg" width="485" height="45" alt=""></router-link>
     </div>
   </div>
 </template>
 
 <script>
+import ShinhanNavigationBar from '../components/ShinhanNavigationBar.vue'
+
 export default {
-  emits: ["barType"],
+  components: {
+    ShinhanNavigationBar,
+  },
   data() {
     return {
       type: 'barcode',
@@ -53,7 +58,7 @@ export default {
 p {
   text-align: center;
   font-size: 25px;
-  margin: 20px;
+  margin: 5px;
 }
 .green {
   color: #25bf8b;

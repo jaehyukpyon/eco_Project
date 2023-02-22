@@ -18,13 +18,17 @@ import Walk from '../views/Walk.vue'
 import DailyMission from '../views/DailyMission.vue'
 import AddMission from '../views/AddMission.vue'
 import AccountDone from '../views/AccountDone.vue'
-
+import HomeMileage2 from '../views/HomeMileage2.vue'
+import AccountCreateView2 from '../views/AccountCreateView2.vue'
+import LoadingSpinnerTest from '../views/LoadingSpinnerTest.vue'
+import NewsList from '../views/NewsList.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: {
+      name: 'register',
+    }
   },
   {
     path: '/about',
@@ -37,7 +41,7 @@ const routes = [
   {
     path: '/mileage',
     name: 'mileage',
-    component: HomeMileage,
+    component: HomeMileage2,
   },
   {
     path: '/ecomall-list',
@@ -97,7 +101,7 @@ const routes = [
   {
     path: '/account',
     name: 'account',
-    component: AccountCreateView,
+    component: AccountCreateView2,
   },
   {
     path: '/account/confirm',
@@ -123,6 +127,19 @@ const routes = [
     path: '/account/done',
     name: 'account-done',
     component: AccountDone,
+  },
+  {
+    path: '/mileage2',
+    name: 'mileage2',
+    component: HomeMileage2,
+  },
+  {
+    path: '/loading',
+    component: LoadingSpinnerTest
+  },
+  {
+    path: '/news',
+    component: NewsList,
   },
 ]
 
