@@ -32,3 +32,9 @@ class MileageList(
             return self.create(request, args, kwargs)
         else:
             return HttpResponse(status=401)
+
+# GEt, UPDATE, PUT기능 
+class MileageDetail(generics.RetrieveUpdateAPIView):
+    queryset = Mileage.objects.all()
+    serializer_class = MileageSerializer
+
