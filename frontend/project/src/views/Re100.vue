@@ -10,11 +10,11 @@
           <tr>
             <th>No.</th>
             <th>기업명</th>
-            <th>RE100 달성 <br>목표 연도(년)</th>
+            <th>목표연도</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in list" :key="item.no">
+          <tr v-for="item in list" :key="item.no" @click="clicked(item.name)">
             <td>{{ item.no }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.when }}</td>
@@ -36,6 +36,13 @@ export default {
   },
   components: {
     ShinhanNavigationBar,
+  },
+  methods: {
+    clicked(stockName) {
+      this.$store.commit('setStockName', stockName);
+      console.log('re100리스트페이지에서 stockName이 잘 저장됐음? ' + this.$store.getters.getStockName);
+      this.$router.push('/stock/order');
+    }
   },
   created() {
     // backend에서 크롤링한 re100 기업 리스트 받아오기
@@ -60,7 +67,7 @@ export default {
 <style scoped>
 table thead th {
   height: 45px;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 th, td {
@@ -68,6 +75,10 @@ th, td {
 }
 tbody td {
   height: 40px;
-  font-size: 1.2rem;
+  font-size: 1rem;
+}
+
+tbody > tr:hover {
+  cursor: pointer;
 }
 </style>

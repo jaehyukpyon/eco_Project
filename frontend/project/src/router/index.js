@@ -18,6 +18,7 @@ import Walk from '../views/Walk.vue'
 import DailyMission from '../views/DailyMission.vue'
 import AddMission from '../views/AddMission.vue'
 import AccountDone from '../views/AccountDone.vue'
+import HomeMileage2 from '../views/HomeMileage2.vue'
 
 
 const routes = [
@@ -37,7 +38,7 @@ const routes = [
   {
     path: '/mileage',
     name: 'mileage',
-    component: HomeMileage,
+    component: HomeMileage2,
   },
   {
     path: '/ecomall-list',
@@ -123,6 +124,11 @@ const routes = [
     path: '/account/done',
     name: 'account-done',
     component: AccountDone,
+  },
+  {
+    path: '/mileage2',
+    name: 'mileage2',
+    component: HomeMileage2,
   },
 ]
 

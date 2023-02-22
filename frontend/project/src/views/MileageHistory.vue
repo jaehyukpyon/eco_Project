@@ -7,13 +7,13 @@
       <span class="total">{{ usermileage }}</span>
     </div>
 
-    <div style="margin-top: 25px; height: 385px; overflow: auto; background: #FEF8F5; border-radius: 20px">
+    <div style="margin-top: 25px; height: 385px; overflow: auto; border-radius: 20px">
       <table style="text-align: center; margin: 0 auto; width: 100%">
         <thead>
           <tr>
             <th>유형</th>
-            <th>적립(+)/사용(-)</th>
-            <th>날짜</th>
+            <th>+/-</th>
+            <th>일자</th>
           </tr>
         </thead>
         <tbody>          
@@ -78,7 +78,7 @@ export default {
 
 <style scoped>
 .name {
-  top: 20px;
+  top: 12px;
   left: 6px;
   position: absolute;
   font-weight: bolder;
@@ -87,18 +87,18 @@ export default {
 
 .total {
   position: absolute;
-  top: 80px;
+  top: 75px;
   right: 120px;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bolder;
 }
 
 table thead tr th {
-  font-size: 22px;
+  font-size: 1rem;
   height: 50px;
 }
 
 table tbody tr td {
-  font-size: 18px;
+  font-size: 1rem;
   height: 30px;
 }</style>
