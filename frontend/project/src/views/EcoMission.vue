@@ -3,9 +3,9 @@
     <div>
     <div>
       <p>
-        <span class="title" style="margin-top:40px; text-align: center; position: relative; width: 100%;">에코 인증 미션</span><br />
-        <span class="sub" style="margin-top: 40px; text-align: center; position: relative; width:100%;">일상에서 실천할 수 있는<b></b><br>친환경 활동들을<br />
-        인증 시 마일리지 보상!</span>
+        <span class="title" style="margin-top:40px; text-align: center; position: relative; width: 100%;">친환경 인증 데일리 미션</span><br />
+        <span class="sub" style="margin-top: 10px; text-align: center; position: relative; width:100%;">일상에서 실천할 수 있는<b></b><br>친환경 활동들을 인증 시<br />
+        마일리지로 보상해드립니다!</span>
       </p>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default ({
 .title {
   display: inline-block;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 38px;
   position: center;
   color: #25bf8b;
 }

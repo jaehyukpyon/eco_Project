@@ -27,8 +27,15 @@ class MileageList(
             user = request.user
             user.mileage += int(request.data.get('mileage'))
             user.save()
-            request.POST._mutable = True
-            request.POST['user'] = request.user.id
+            # request.POST._mutable = True
+            # request.POST['user'] = request.user.id
+            request.data['user'] = request.user.id
             return self.create(request, args, kwargs)
         else:
             return HttpResponse(status=401)
+
+# GEt, UPDATE, PUT기능 
+class MileageDetail(generics.RetrieveUpdateAPIView):
+    queryset = Mileage.objects.all()
+    serializer_class = MileageSerializer
+

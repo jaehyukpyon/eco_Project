@@ -6,4 +6,6 @@ urlpatterns = [
     path('mission/', include("Mission.urls")),
     path('member/', include("member.urls")),
     path('mileage/', include("mileage.urls")),
+    path('news/', include("news.urls")),
+    path('stock/', include("stock.urls")),
 ]
