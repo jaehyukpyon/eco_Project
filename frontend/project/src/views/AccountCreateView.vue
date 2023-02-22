@@ -10,15 +10,14 @@
             마일리지<span class="small">도 받자!</span> </p>
     </div>
     <div class="sub">
-        <p class="subtitle" style="margin-left:20px; margin-top: 10px; text-align:left; position:relative;">친환경 계좌 개설하면<br>
+        <p class="subtitle" style="margin-left:15px; margin-top: 5px; text-align:left; position:relative;">친환경 계좌 개설하면<br>
             <span class="subtitle1">마일리지 지급</span><br>
-            <span class="subtitle2" style="margin-left:350px; margin-top:0px; text-align:right;">마일리지로</span><br>
-            <span class="subtitle3" style="margin-left:350px; text-align:right;" >친환경</span>
+            <span class="subtitle2" style="margin-left:370px; margin-top:0px; text-align:right;">마일리지로</span><br>
+            <span class="subtitle3" style="margin-left:370px; text-align:right;" >친환경</span>
             <span class="subtitle4">주식도!</span></p>
     </div>
-    <div class="temple2">
-        <p class="title2">친환경 계좌 개설하기</p>
-    </div> 
+        <button @click="create" style="margin-top: 5px;">친환경 계좌 개설하기</button>
+    
 </template>
 
 <style scoped>
@@ -38,12 +37,17 @@
     padding-top: 130px;
     font-size: 50px;
 }
-.title2 {
+button {
+    background-color: #25BF8B;
     color: white;
-    text-align: center;
-    padding-top: 110px;
-    font-size: 20px;
-}
+    padding: 17px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+
 .title > .small {
     font-size: 40px;
 }
