@@ -51,7 +51,7 @@ export default {
           }).then(result => {
             console.log(result.data);
           })
-        }, 2000);        
+        }, 5000);        
       }
 
 
