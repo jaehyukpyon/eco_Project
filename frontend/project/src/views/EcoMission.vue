@@ -41,6 +41,7 @@ export default ({
       else if(this.type == 'eco_mission_done') this.type='mission_none'
     }
   },
+    
 });
 </script>
 <style scoped>

@@ -13,7 +13,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      missionList: [
+      addmissionList: [
         {
           title: '텀블러사용하기',
           description: '테이크아웃 음료가 텀블러에 담긴 사진을 업로드해주세요.',
@@ -38,18 +38,24 @@ export default {
     };
   },
   methods: {
-    addMission(missionNum) {
-      const url = 'http://127.0.0.1:8000/api/mission/';
+    created() {
+      const url = 'http://34.64.235.73/api/mission/';
       const accessToken = this.$cookies.get('accessToken');
+      const that = this;
+      for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+          axios.post(url, that.addmissionList[i], {
+          headers: {
+            Authorization: 'JWT ' + accessToken,
+          }
+          }).then(result => {
+            console.log(result.data);
+          })
+        }, 2000);        
+      }
 
-      const target = this.missionList[missionNum];
-      axios.post(url, target, {
-        headers: {
-          Authorization: 'JWT ' + accessToken,
-        }
-      }).then(result => {
-        console.log(result.data);
-      })
+
+      
     },
   }
 }
