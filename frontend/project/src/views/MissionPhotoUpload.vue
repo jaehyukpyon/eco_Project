@@ -124,6 +124,8 @@ input[type="file"] {
   display: inline-block;
   padding: 6px 12px;
   cursor: pointer;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 #preview {
@@ -145,7 +147,8 @@ input[type="file"] {
   border-radius: 20px;
 }
 .mission-type {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: bolder;
 }
 
 .mission-description {
@@ -169,5 +172,6 @@ input[type="file"] {
 
 .uploadbtn {
   cursor: pointer;
+  margin-top: 15px;
 }
 </style>
